@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/*
+ * 设计令牌。
+ * 深浅色各一套值，不是简单反转 —— 反转出来的深色模式对比度通常不达标。
+ */
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f2;
+  --border: #e4e4e0;
+  --border-strong: #d0d0ca;
+  --text: #1a1a19;
+  --text-muted: #6b6b66;
+  --text-faint: #96968f;
+
+  --accent: #2a78d6;
+  --accent-soft: #eaf2fc;
+  --success: #1a7f4b;
+  --success-soft: #e8f5ee;
+  --warn: #a8620a;
+  --warn-soft: #fdf3e4;
+  --danger: #b3261e;
+  --danger-soft: #fdecea;
+
+  /*
+   * 分类色板前三位。顺序是 CVD 安全机制的一部分，不是装饰 ——
+   * 已用校验器验证：色盲分离度 ΔE 9.2、常视分离度 27.6，均达标。
+   * 不要在这里插入新颜色或改变顺序。
+   * aqua 在浅色底上对比度 2.82:1，低于 3:1，所以图表里必须直接标注数值。
+   */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --grid: #e1e0d9;
+  --axis: #898781;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16161a;
+    --surface: #1e1e22;
+    --surface-2: #26262b;
+    --border: #33333a;
+    --border-strong: #42424a;
+    --text: #ececee;
+    --text-muted: #a0a0a8;
+    --text-faint: #74747c;
+
+    --accent: #62a5f0;
+    --accent-soft: #1c2a3d;
+    --success: #4cc38a;
+    --success-soft: #16291f;
+    --warn: #e0a458;
+    --warn-soft: #2c2317;
+    --danger: #f0736a;
+    --danger-soft: #2e1a18;
+
+    /*
+     * 深色不是浅色的反相，是各自挑选、各自验证的一套步进。
+     * 之前手调的那版（更亮的蓝/橙/绿）校验不通过：亮度带超出范围，
+     * 且橙绿之间的色盲分离度只有 7.7，落在警告带。用下面这组。
+     */
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --grid: #2c2c2a;
+    --axis: #898781;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    var(--font-sans), ui-sans-serif, system-ui, "PingFang SC", "Microsoft YaHei",
+    sans-serif;
+}
+
+/* 表格里的数字用等宽对齐，扫读时更容易比较 */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

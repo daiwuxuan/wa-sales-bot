@@ -1,0 +1,40 @@
+# ── 密钥 ──────────────────────────────────────────────
+# .env 里有 OPENAI_API_KEY。永远不要提交。
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ── 数据库 ────────────────────────────────────────────
+# SQLite 的 -wal / -shm 必须和主库一起忽略，
+# 它们是事务的一部分，分开提交会损坏数据。
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# ── 上传的商品图 ──────────────────────────────────────
+backend/storage/
+backend/uploads/
+
+# ── Python ────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# ── Node / Next ───────────────────────────────────────
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# ── 编辑器 / 系统 ─────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
